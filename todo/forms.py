@@ -7,7 +7,7 @@ from todo.extensions import db
 
 class RegisterForm(FlaskForm):
   username = StringField(label='Username', validators=[DataRequired(), Length(max=20, min=4)])
-  email = EmailField(label='Email', validators=[DataRequired(), Email()])
+  email = EmailField(label='Email Address', validators=[DataRequired(), Email()])
   password = PasswordField(label='Password', validators=[DataRequired()])
   confirm_password = PasswordField(label='Confirm Password', validators=[DataRequired(), EqualTo('password')])
 
@@ -35,12 +35,12 @@ class UpdateAccountForm(FlaskForm):
                          render_kw={'readonly':'readonly'})
   email = EmailField(label='Email', validators=[DataRequired(), Email()], render_kw={'readonly':'readonly'})
   fullname = StringField(label='Fullname')
-  avatar = FileField(label='Update Profile Avatar', validators=[FileAllowed(['jpg', 'png'])])
+  avatar = FileField(label='Update Profile Avatar', validators=[FileAllowed(['jpg', 'jpeg','png'])])
 
   submit = SubmitField(label='Update Account')
 
 class TaskForm(FlaskForm):
-  task = StringField(label='Task', validators=[DataRequired(), Length(min=4, max=50)], 
+  task = StringField(label='Task', validators=[DataRequired(), Length(min=4, max=100)], 
                      render_kw={'placeholder': 'Enter your Task'})
   
   submit = SubmitField(label='Add New Task')
